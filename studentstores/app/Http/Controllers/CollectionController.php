@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use DB;
+
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -56,11 +58,45 @@ class CollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $ordenamiento = $request->input('orden');
         
+
+        
+        //dd($tecno);
         $collection = Collection::find($id);
-        return view('collections.show', compact('collection'));
+
+            $ascs = DB::table('products')
+                                ->where('collection_id', $id)
+                                ->orderBy('name', 'asc')
+                                ->get();
+
+            
+        
+            //descendente
+            $descs = DB::table('products')
+                                ->where('collection_id', $id)
+                                ->orderBy('name', 'desc')
+                                ->get();
+
+
+            $ascprecios = DB::table('products')
+                                ->where('collection_id', $id)
+                                ->orderBy('price', 'asc')
+                                ->get();
+
+            
+        
+            //descendente
+            $descprecios = DB::table('products')
+                                ->where('collection_id', $id)
+                                ->orderBy('price', 'desc')
+                                ->get();
+        
+        
+        
+        return view('collections.show', ['collection'=>$collection, 'ordenamiento' => $ordenamiento, 'ascs' => $ascs, 'descs' => $descs, 'ascprecios' => $ascprecios, 'descprecios' => $descprecios] );
     }
 
     /**
@@ -77,6 +113,19 @@ class CollectionController extends Controller
 
         return view('collections.edit', compact('collection'));
     }
+
+    public function removeproduct($id)
+    {
+        DB::table('products')
+            ->where('collection_id', $id)
+            ->update(['collection_id' => null]);
+        
+        
+
+        return view('collections.show', compact('collection'));
+    }
+
+        
 
     /**
      * Update the specified resource in storage.

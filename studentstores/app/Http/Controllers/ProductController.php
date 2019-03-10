@@ -124,4 +124,6 @@ class ProductController extends Controller
 
         return redirect('/products')->with('success', 'Stock has been deleted Successfully');
     }
+
+    
 }

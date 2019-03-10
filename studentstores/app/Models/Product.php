@@ -14,7 +14,7 @@ class Product extends Model {
     ]; 
 
     public function collection() {
-        return $this->belongsTo('App\Models\Collection');
+        return $this->belongsToMany('App\Models\Collection');
     }
 
     protected $table = "products";

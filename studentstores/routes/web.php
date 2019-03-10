@@ -15,5 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
+
+Route::get('/collections/{collection}/removeproduct', 'CollectionController@removeproduct')->name('collections.removeproduct');
+
 Route::resource('products', 'ProductController');
 Route::resource('collections', 'CollectionController');
