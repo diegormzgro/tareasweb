@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignkeys extends Migration
+class CreateOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class AddForeignkeys extends Migration
      */
     public function up()
     {
-        
+        Schema::create('order_product', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('order_id')->unsigned();
+            $table->integer('product_id')->unsigned();
+            $table->timestamps();
 
-        Schema::table('collections', function(Blueprint $table)
-        {
-            $table->unsignedInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
-        });      
+            $table->foreign('product_id')->references('id')->on('products');
+        });
     }
 
     /**
@@ -29,12 +31,6 @@ class AddForeignkeys extends Migration
      */
     public function down()
     {
-        Schema::table('products', function(Blueprint $table)
-        {
-
-            $table->dropForeign(['order_id']);
-            $table->dropColumn('order_id');
-            
-        });
+        Schema::dropIfExists('order_product');
     }
 }

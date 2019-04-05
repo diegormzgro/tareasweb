@@ -36,6 +36,13 @@
 </form>
 
 
+<div class="pull-right box-tools">
+                        <a class="btn btn-info btn-sm" href="{{ route('collections.products.create', ['collection' => $data['collection']]) }}">
+                            Agregar nuevo producto
+                        </a>
+</div>
+
+
 
 
 
@@ -44,8 +51,8 @@
     <div class="col">
         <table class="table">
 
-        @if ($ordenamiento === "1")
-                <theader>
+        
+        <theader>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Precio</th>
@@ -53,143 +60,7 @@
                     <th>Eliminar de la coleccion</th>
             
 
-                </theader>
-                <tbody>
-                    @foreach($ascs as $asc)
-                        <tr>
-                            <td>
-                                {{ $asc->name}}
-                            </td>
-                            <td>
-                                {{ $asc->description}}
-                            </td>
-                            <td>
-                                {{ $asc->price}}
-                            </td>
-                            <td>
-                                {{ $asc->discount_price}}
-                            </td>
-                            <td>
-                            <td><a href="{{ route('products.edit',$asc->id) }}" class="btn btn-danger">Drop</a></td>
-                            </td>
-                            
-
-
-                        </tr>
-                    @endforeach
-        @elseif ($ordenamiento === "2")
-                <theader>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Precio</th>
-                    <th>Precio de descuento</th>
-                    <th>Eliminar de la coleccion</th>
-            
-
-                </theader>
-                <tbody>
-                    @foreach($descs as $desc)
-                        <tr>
-                            <td>
-                                {{ $desc->name}}
-                            </td>
-                            <td>
-                                {{ $desc->description}}
-                            </td>
-                            <td>
-                                {{ $desc->price}}
-                            </td>
-                            <td>
-                                {{ $desc->discount_price}}
-                            </td>
-                            <td>
-                            <td><a href="{{ route('products.edit',$desc->id) }}" class="btn btn-danger">Drop</a></td>
-                            </td>
-                            
-
-
-                        </tr>
-                    @endforeach
-                    
-
-        @elseif ($ordenamiento === "3")
-                <theader>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Precio</th>
-                    <th>Precio de descuento</th>
-                    <th>Eliminar de la coleccion</th>
-            
-
-                </theader>
-                <tbody>
-                    @foreach($ascprecios as $ascprecio)
-                        <tr>
-                            <td>
-                                {{ $ascprecio->name}}
-                            </td>
-                            <td>
-                                {{ $ascprecio->description}}
-                            </td>
-                            <td>
-                                {{ $ascprecio->price}}
-                            </td>
-                            <td>
-                                {{ $ascprecio->discount_price}}
-                            </td>
-                            <td>
-                            <td><a href="{{ route('products.edit',$ascprecio->id) }}" class="btn btn-danger">Drop</a></td>
-                            </td>
-                            
-
-
-                        </tr>
-                    @endforeach
-
-        @elseif ($ordenamiento === "4")
-                <theader>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Precio</th>
-                    <th>Precio de descuento</th>
-                    <th>Eliminar de la coleccion</th>
-            
-
-                </theader>
-                <tbody>
-                    @foreach($descprecios as $descprecio)
-                        <tr>
-                            <td>
-                                {{ $descprecio->name}}
-                            </td>
-                            <td>
-                                {{ $descprecio->description}}
-                            </td>
-                            <td>
-                                {{ $descprecio->price}}
-                            </td>
-                            <td>
-                                {{ $descprecio->discount_price}}
-                            </td>
-                            <td>
-                            <td><a href="{{ route('products.edit',$descprecio->id) }}" class="btn btn-danger">Drop</a></td>
-                            </td>
-                            
-
-
-                        </tr>
-                    @endforeach
-
-        @else
-                <theader>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Precio</th>
-                    <th>Precio de descuento</th>
-                    <th>Eliminar de la coleccion</th>
-            
-
-                </theader>
+        </theader>
                 <tbody>
                     @foreach($collection->products as $product)
                         <tr>
@@ -213,7 +84,7 @@
 
                         </tr>
                     @endforeach
-        @endif
+        
         
             
             

@@ -58,45 +58,14 @@ class CollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, Collection $collection)
     {
         $ordenamiento = $request->input('orden');
-        
 
-        
-        //dd($tecno);
-        $collection = Collection::find($id);
-
-            $ascs = DB::table('products')
-                                ->where('collection_id', $id)
-                                ->orderBy('name', 'asc')
-                                ->get();
-
-            
-        
-            //descendente
-            $descs = DB::table('products')
-                                ->where('collection_id', $id)
-                                ->orderBy('name', 'desc')
-                                ->get();
-
-
-            $ascprecios = DB::table('products')
-                                ->where('collection_id', $id)
-                                ->orderBy('price', 'asc')
-                                ->get();
-
-            
-        
-            //descendente
-            $descprecios = DB::table('products')
-                                ->where('collection_id', $id)
-                                ->orderBy('price', 'desc')
-                                ->get();
-        
-        
-        
-        return view('collections.show', ['collection'=>$collection, 'ordenamiento' => $ordenamiento, 'ascs' => $ascs, 'descs' => $descs, 'ascprecios' => $ascprecios, 'descprecios' => $descprecios] );
+        $data = [];
+        $data['collection'] = $collection;
+                
+        return view('collections.show', ['collection'=>$collection, 'data'=>$data] );
     }
 
     /**

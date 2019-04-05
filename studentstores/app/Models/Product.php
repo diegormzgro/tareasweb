@@ -13,8 +13,12 @@ class Product extends Model {
         'collection_id'
     ]; 
 
-    public function collection() {
+    public function collections() {
         return $this->belongsToMany('App\Models\Collection');
+    }
+
+    public function orders() {
+        return $this->belongsToMany('App\Models\Order');
     }
 
     protected $table = "products";

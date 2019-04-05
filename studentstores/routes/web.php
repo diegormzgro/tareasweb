@@ -20,3 +20,6 @@ Route::get('/collections/{collection}/removeproduct', 'CollectionController@remo
 
 Route::resource('products', 'ProductController');
 Route::resource('collections', 'CollectionController');
+
+Route::get('collections/{collection}/products/create', 'CollectionProductController@create')->name('collections.products.create');
+Route::post('collections/{collection}/products', 'CollectionProductController@store')->name('collections.products.store');
