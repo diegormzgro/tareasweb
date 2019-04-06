@@ -18,7 +18,17 @@ class CollectionProductController extends BaseController
 
     public function store(Request $req, Collection $collection) {
         $product = Product::find($req->input('collection_product.product_id'));
+        dump($product);
         $collection->products()->attach($product->id);
         return redirect()->route('collections.show', ['collection' => $collection]);
+    }
+
+    public function detach(Request $req, Collection $collection, Product $product)
+    {
+        //$product = Product::find($req->input('collection_product.product_id'));
+        dump($product);
+        $collection->products()->detach($product->id);
+        return redirect()->route('collections.show', ['collection' => $collection]);
+
     }
 }

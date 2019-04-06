@@ -14,7 +14,7 @@ class CreateCollectionsTable extends Migration
     public function up()
     {
         Schema::create('collections', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->onDelete('cascade');
             $table->string('name');
             $table->string('description');
             

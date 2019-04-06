@@ -1,4 +1,33 @@
 //
+
+<form action="{{ route('collections.show',$collection->id) }}" method="GET">
+    @csrf
+    
+    
+
+    <div class="form-group">
+        <label>Ordenamiento por nombre</label>
+            <select name="orden" class="form-control">
+                
+                    <option value="1">Ascendente nombre</option>
+                    <option value="2">Descendente nombre</option>
+                    <option value="3">Ascendente precio</option>
+                    <option value="4">Descendente precio</option>
+                    <option value="5">None</option>
+                    
+                
+            </select>
+    </div>
+  
+    
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Ordenar</button>
+        </div>
+    </div>
+</form>
+
+
     $ascs = DB::table('products')
                                 ->where('collection_id', $id)
                                 ->orderBy('name', 'asc')

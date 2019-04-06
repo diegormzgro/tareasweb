@@ -43,14 +43,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Coleccion</label>
-            <select name="product[collection_id]" class="form-control">
-                @foreach ($data['collections'] as $collection)
-                    <option value="{{ $collection->id }}">{{ $collection->name }}</option>
-                @endforeach
-            </select>
-    </div>
+  
   
     
     <div class="row">

@@ -36,9 +36,9 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Tarjeta a agregar</label>
+                            <label>producto a agregar</label>
                             <select name="collection_product[product_id]" class="form-control">
-                                <option value="">Selecciona una tarjeta</option>
+                                <option value="">Selecciona una producto</option>
                                 @foreach ($data['products'] as $product)
                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach

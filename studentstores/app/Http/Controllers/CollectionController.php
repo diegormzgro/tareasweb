@@ -85,9 +85,8 @@ class CollectionController extends Controller
 
     public function removeproduct($id)
     {
-        DB::table('products')
-            ->where('collection_id', $id)
-            ->update(['collection_id' => null]);
+        $product = Product::findOrFail($id);
+        $product->collections()->detach($id);
         
         
 

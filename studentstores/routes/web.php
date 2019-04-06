@@ -23,3 +23,5 @@ Route::resource('collections', 'CollectionController');
 
 Route::get('collections/{collection}/products/create', 'CollectionProductController@create')->name('collections.products.create');
 Route::post('collections/{collection}/products', 'CollectionProductController@store')->name('collections.products.store');
+
+Route::get('collections/{collection}/products/{product}', 'CollectionProductController@detach')->name('collections.products.detach');
