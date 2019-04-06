@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.second')
 
 @section('content')
 <div class="row">
@@ -6,11 +6,7 @@
         <h1>Índice de productos</h1>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <a class="btn btn-primary" href="{{ route('products.create') }}" role="button">Agregar un producto</a>
-    </div>
-</div>
+
 
 <div class="row">
 
@@ -40,14 +36,7 @@
                         <td>
                             {{ $product->discount_price}}
                         </td>
-                        <td><a href="{{ route('products.edit',$product->id) }}" class="btn btn-primary">Edit</a></td>
-                        <td>
-                            <form action="{{ route('products.destroy', $product->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
-                        </td>
+                        
 
 
                     </tr>
@@ -64,6 +53,10 @@
 
 </div>
 
-
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary" href="" role="button">Agregar productos al carrito</a>
+    </div>
+</div>
 
 @endsection

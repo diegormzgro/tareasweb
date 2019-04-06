@@ -17,23 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <!-- START Menú de la página -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('products.index') }}">
-                        products
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('collections.index') }}">
-                        collections
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">
-                        users
-                    </a>
-                </li>
-            </ul>
+            
             <!-- END Menú de la página -->
         </div>
     </nav>
