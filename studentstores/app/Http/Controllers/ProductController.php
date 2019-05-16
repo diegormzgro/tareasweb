@@ -16,12 +16,150 @@ class ProductController extends Controller
      */
     public function index()
     {
+        print_r("abcde");
         $products = Product::all();
         //dd($products);
         $data = [];
         $data['products'] = $products;
         return view('products.index', $data);
     }
+
+    public function indexuser()
+    {
+        //
+        $products = Product::all();
+        //dd($products);
+        $data = [];
+        $data['products'] = $products;
+        return view('products.indexuser', $data);
+    }
+
+    public function cart(Request $req, $discount = null)
+    {
+        $preciorebajado = $discount;
+        dump($preciorebajado);
+
+        if ($discount) {
+            print_r("entro al if");
+            $preciorebajado = $discount - ($discount * 0.20);
+            dump($preciorebajado);
+        }
+        else
+        {
+            print_r("entro al else");
+            $preciorebajado = $discount;
+        }
+
+        $products = Product::all();
+        $data = [];
+        $data['products'] = $products;
+        $data['discount'] = $preciorebajado;
+
+        return view('products.cart', ['totaldescuento' => $preciorebajado]);
+        //return view('products.cart');
+    }
+
+    public function discount($total)
+    {
+            return "entró al discount";
+    }
+
+    public function addToCart($id)
+    {
+            print("entro al cart");
+            $product = Product::find($id);
+     
+            if(!$product) {
+     
+                abort(404);
+     
+            }
+     
+            $cart = session()->get('cart');
+     
+            // if cart is empty then this the first product
+            if(!$cart) {
+     
+                $cart = [
+                        $id => [
+                            "name" => $product->name,
+                            "quantity" => 1,
+                            "price" => $product->price,
+                            "photo" => $product->photo
+                        ]
+                ];
+     
+                session()->put('cart', $cart);
+     
+                return redirect()->back()->with('success', 'Product added to cart successfully!');
+            }
+     
+            // if cart not empty then check if this product exist then increment quantity
+            if(isset($cart[$id])) {
+     
+                $cart[$id]['quantity']++;
+     
+                session()->put('cart', $cart);
+     
+                return redirect()->back()->with('success', 'Product added to cart successfully!');
+     
+            }
+     
+            // if item not exist in cart then add to cart with quantity = 1
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "photo" => $product->photo
+            ];
+     
+            session()->put('cart', $cart);
+     
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function updatecart(Request $request)
+    {
+        if($request->id and $request->quantity)
+        {
+            $cart = session()->get('cart');
+ 
+            $cart[$request->id]["quantity"] = $request->quantity;
+ 
+            session()->put('cart', $cart);
+ 
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+ 
+    public function removecart(Request $request)
+    {
+        dd("entro al remove");
+        if($request->id) {
+ 
+            $cart = session()->get('cart');
+ 
+            if(isset($cart[$request->id])) {
+ 
+                unset($cart[$request->id]);
+ 
+                session()->put('cart', $cart);
+            }
+ 
+            session()->flash('success', 'Product removed successfully');
+        }
+    }
+
+    public function transaction(Request $req) {
+        $data = [];
+        // $data['cart'] = $cart;
+        $data['transaction'] = 'transaction-done';
+        // Verifique el Ordcar er ID que te envía Paypal sea válido.
+        // Ver la documentación de Paypal
+        // Modificar tu orden a un estatus de pagada.
+        return response()->json($data);
+    }
+    
 
     /**
      * Show the form for creating a new resource.

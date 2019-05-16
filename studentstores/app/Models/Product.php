@@ -17,8 +17,9 @@ class Product extends Model {
         return $this->belongsToMany('App\Models\Collection');
     }
 
-    public function cart() {
-        return $this->belongsToMany('App\Models\Cart');
+    //Establecer relacion muchos a muchos entre Orden y Producto
+    public function order() {
+        return $this->belongsToMany('App\Models\Order');
     }
 
     protected $table = "products";
