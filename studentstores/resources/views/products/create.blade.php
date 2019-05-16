@@ -42,6 +42,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label>Unidades disponibles en almacen</label>
+                <input type="text" class="form-control" name="product[unidades]">
+            </div>
+        </div>
+    </div>
+
 <!--
     <div class="form-group">
         <label>Coleccion</label>

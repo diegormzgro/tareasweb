@@ -21,6 +21,7 @@
                 <th>Description</th>
                 <th>Precio</th>
                 <th>Precio de descuento</th>
+                <th>Unidades disponibles</th>
                 <th>Edit</th>
                 <th>Delete</th>
 
@@ -39,6 +40,9 @@
                         </td>
                         <td>
                             {{ $product->discount_price}}
+                        </td>
+                        <td>
+                            {{ $product->unidades}}
                         </td>
                         <td><a href="{{ route('products.edit',$product->id) }}" class="btn btn-primary">Edit</a></td>
                         <td>

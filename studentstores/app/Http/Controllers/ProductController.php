@@ -210,8 +210,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $productInput = $request->input('product');
-        ($productInput);
+        //dd($productInput);
         $product = Product::create($productInput);
+        //dd($product);
+        $product->update(['unidades' => $productInput['unidades']]);
 
         
         
