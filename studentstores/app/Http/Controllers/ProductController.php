@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Collection;
+use App\Models\Order;
 
 class ProductController extends Controller
 {
@@ -14,6 +15,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $orderInput;
+    private $orden;
+
+
     public function index()
     {
         print_r("abcde");
@@ -43,12 +49,20 @@ class ProductController extends Controller
             print_r("entro al if");
             $preciorebajado = $discount - ($discount * 0.20);
             dump($preciorebajado);
+            
+            
+
         }
         else
         {
             print_r("entro al else");
             $preciorebajado = $discount;
         }
+        $orderInput['status'] = false;
+        $orderInput['total'] = 1235.25;
+
+        $orden = Order::create($orderInput);
+        dump($orden);
 
         $products = Product::all();
         $data = [];
@@ -157,6 +171,9 @@ class ProductController extends Controller
         // Verifique el Ordcar er ID que te envía Paypal sea válido.
         // Ver la documentación de Paypal
         // Modificar tu orden a un estatus de pagada.
+        $orderInput['status'] = true;
+        $orden->update($ordentInput);
+
         return response()->json($data);
     }
     

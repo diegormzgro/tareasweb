@@ -16,6 +16,12 @@ Route::get('/', function () {
 })->name('homepage');
 
 
+Route::post('/cart', 'OrderController@storeorder')->name('orders.store');
+
+
+
+
+
 Route::get('/collections/{collection}/removeproduct', 'CollectionController@removeproduct')->name('collections.removeproduct');
 
 Route::resource('products', 'ProductController');
