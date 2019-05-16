@@ -15,9 +15,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexorder()
+    public function index()
     {
-        //
+        $orders = Order::all();
+        //dd($products);
+        $data = [];
+        $data['orders'] = $orders;
+        return view('orders.index', $data);
     }
 
     /**

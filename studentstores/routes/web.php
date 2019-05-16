@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::post('/cart', 'OrderController@storeorder')->name('orders.store');
+Route::get('/orders', 'OrderController@index')->name('orders.index');
 
 
 

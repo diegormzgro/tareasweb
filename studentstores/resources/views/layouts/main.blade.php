@@ -33,6 +33,11 @@
                         users
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('orders.index') }}">
+                        Reporte de ordenes
+                    </a>
+                </li>
             </ul>
             <!-- END Menú de la página -->
         </div>
