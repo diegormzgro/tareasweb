@@ -23,10 +23,14 @@
                 @foreach($orders as $order)
                     <tr>
                         <td>
-                            {{ $order->status}}
+                            @if($order->status == 1)
+                                <p> Si </p>
+                            @else
+                                <p> No </p>
+                            @endif
                         </td>
                         <td>
-                            {{ $order->total}}
+                            ${{ $order->total}} MXN
                         </td>
                         <td>
                             {{ $order->created_at}}

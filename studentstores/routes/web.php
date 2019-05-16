@@ -38,7 +38,7 @@ Route::resource('collections', 'CollectionController');
 Route::get('cart/{discount?}', 'ProductController@cart')->name('products.cart');
 Route::get('add-to-cart/{id}', 'ProductController@addToCart')->name('products.add-to-cart');
 
-Route::post('transaction-done', 'ProductController@transaction')->name('products.transaction');
+Route::post('transaction-done/{total}', 'ProductController@transaction')->name('products.transaction');
 
 Route::patch('update-cart', 'ProductController@updatecart')->name('updatecart');
 Route::delete('remove-from-cart', 'ProductController@removecart')->name('removefromcart');

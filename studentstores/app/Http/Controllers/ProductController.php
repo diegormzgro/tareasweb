@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Collection;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -164,15 +165,26 @@ class ProductController extends Controller
         }
     }
 
-    public function transaction(Request $req) {
+    public function transaction(Request $req, $total) {
         $data = [];
         // $data['cart'] = $cart;
         $data['transaction'] = 'transaction-done';
         // Verifique el Ordcar er ID que te envía Paypal sea válido.
         // Ver la documentación de Paypal
         // Modificar tu orden a un estatus de pagada.
-        $orderInput['status'] = true;
-        $orden->update($ordentInput);
+        
+        //$this->orderInput['status'] = true;
+        //dd($ordenInput);
+        $totaltemp = $total;
+        dump($totaltemp);
+
+
+        $idtemp = DB::table('order')->max('id');
+        $ordenfinal = Order::find($idtemp);
+        $ordenfinal->update(['status' => true]);
+        $ordenfinal->update(['total' => $totaltemp]);
+        dump($ordenfinal);
+        //$this->orden->update(['status' => true]);
 
         return response()->json($data);
     }

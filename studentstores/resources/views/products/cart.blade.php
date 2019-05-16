@@ -229,7 +229,7 @@
                 return actions.order.capture().then(function(details) {
                     console.log(details);
                     // Call your server to save the transaction
-                    return fetch('{{ route('products.transaction')}}', {
+                    return fetch('{{ route('products.transaction', ['total' => $totalreal])}}', {
                         method: 'post',
                         headers: {
                             'content-type': 'application/json'
